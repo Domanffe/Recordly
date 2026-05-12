@@ -2098,7 +2098,7 @@ export async function probeExperimentalNvidiaCudaExportCapability(
 	const audioMode = options.audioOptions?.audioMode ?? "none";
 	const audioSkipReason = getNvidiaCudaAudioExportSkipReason(audioMode, {
 		allowValidatedFallbackCandidate:
-			packagedAutoCandidateEnabled || isNvidiaCudaForceVideoOnlyEnabled(),
+			packagedAutoCandidateActive || isNvidiaCudaForceVideoOnlyEnabled(),
 	});
 	let skipReason: string | null = null;
 

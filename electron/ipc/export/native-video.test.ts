@@ -706,8 +706,12 @@ describe("buildExperimentalNvidiaCudaStaticLayoutArgs", () => {
 describe("buildExperimentalWindowsGpuStaticLayoutArgs", () => {
 	it("prefers the high-performance adapter by default for D3D11 fallback diagnostics", () => {
 		const envName = "RECORDLY_WINDOWS_GPU_EXPORT_ADAPTER_INDEX";
+		const preferEnvName =
+			"RECORDLY_WINDOWS_GPU_EXPORT_PREFER_HIGH_PERFORMANCE_ADAPTER";
 		const originalValue = process.env[envName];
+		const originalPreferValue = process.env[preferEnvName];
 		delete process.env[envName];
+		process.env[preferEnvName] = "1";
 
 		try {
 			const args = buildExperimentalWindowsGpuStaticLayoutArgs(
@@ -722,6 +726,11 @@ describe("buildExperimentalWindowsGpuStaticLayoutArgs", () => {
 				delete process.env[envName];
 			} else {
 				process.env[envName] = originalValue;
+			}
+			if (originalPreferValue === undefined) {
+				delete process.env[preferEnvName];
+			} else {
+				process.env[preferEnvName] = originalPreferValue;
 			}
 		}
 	});
