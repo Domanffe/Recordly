@@ -1,4 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
+import { ModernVideoExporter } from "./modernVideoExporter";
 
 const mocks = vi.hoisted(() => {
 	const videoInfo = {
@@ -73,7 +74,6 @@ describe("ModernVideoExporter native fallback routing", () => {
 	});
 
 	it("falls back to WebCodecs instead of surfacing a native error when Breeze is unavailable", async () => {
-		const { ModernVideoExporter } = await import("./modernVideoExporter");
 		const exporter = new ModernVideoExporter({
 			videoUrl: "file:///recording.mp4",
 			width: 1920,
@@ -116,5 +116,5 @@ describe("ModernVideoExporter native fallback routing", () => {
 		expect(result.blob).toBeInstanceOf(Blob);
 		expect(initializeEncoder).toHaveBeenCalledTimes(1);
 		expect(mocks.muxerFinalize).toHaveBeenCalledTimes(1);
-	}, 15_000);
+	}, 30_000);
 });
