@@ -3671,7 +3671,6 @@ export async function exportNativeStaticLayoutVideo(
 								"Experimental NVIDIA CUDA compositor produced an empty output file",
 							);
 						}
-						videoOutputValidated = true;
 						console.info(
 							"[native-static-layout-export] NVIDIA CUDA compositor completed",
 							{
@@ -3767,7 +3766,6 @@ export async function exportNativeStaticLayoutVideo(
 							"Experimental Windows GPU compositor produced an empty output file",
 						);
 					}
-					videoOutputValidated = true;
 					const verifiedNvidiaAdapter = isNvidiaVendorId(
 						gpuResult.summary.adapterVendorId,
 					);

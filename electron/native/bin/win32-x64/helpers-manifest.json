@@ -26,10 +26,10 @@
     },
     "recordly-nvidia-cuda-compositor": {
       "binaryName": "recordly-nvidia-cuda-compositor.exe",
-      "binarySha256": "d974a16ddf45891e3aca19fbb79539c547968cc4dab89a2762bdd738a4dcc9f3",
+      "binarySha256": "3f087c65e054d748bb02d507d4925bbb0b495a9b0e0eae5a8ed118fa4637f34b",
       "sourceDir": "electron/native/nvidia-cuda-compositor",
-      "sourceFingerprint": "2782dae39e51f2dec6d64ca8307e0ec628d9b245b77beec31bb44103fa1323f4",
-      "updatedAt": "2026-05-12T19:26:46.482Z"
+      "sourceFingerprint": "fc3ae59b700c9c25c5228e074f8976b7aa9ef20bc18af0732eca74e2e34e3f80",
+      "updatedAt": "2026-05-12T20:05:02.218Z"
     }
   }
 }

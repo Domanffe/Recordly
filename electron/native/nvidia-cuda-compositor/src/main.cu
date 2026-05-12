@@ -1027,13 +1027,13 @@ __global__ void copyNv12Kernel(
     const float sy = mapScaledCoordinate(static_cast<float>(y), srcHeight, dstHeight);
     dst[y * dstPitch + x] = samplePlaneCubic(src, srcPitch, srcWidth, srcHeight, sx, sy);
 
-    if ((x % 2) == 0 && (y % 2) == 0) {
-        unsigned char* dstUv = dst + dstChromaOffset + (y / 2) * dstPitch + x;
-        const float suvX = mapScaledCoordinate(static_cast<float>(x + 1), srcWidth, dstWidth);
-        const float suvY = mapScaledCoordinate(static_cast<float>(y + 1), srcHeight, dstHeight);
-        sampleNv12UvBilinear(
-            src,
-            srcPitch,
+	if ((x % 2) == 0 && (y % 2) == 0) {
+		unsigned char* dstUv = dst + dstChromaOffset + (y / 2) * dstPitch + x;
+		const float suvX = mapScaledCoordinate(static_cast<float>(x), srcWidth, dstWidth);
+		const float suvY = mapScaledCoordinate(static_cast<float>(y), srcHeight, dstHeight);
+		sampleNv12UvBilinear(
+			src,
+			srcPitch,
             srcSurfaceHeight,
             srcWidth,
             srcHeight,
@@ -1269,17 +1269,15 @@ __global__ void overlayContentRectNv12Kernel(
         mapScaledCoordinate(static_cast<float>(localY), cropHeight, contentHeight);
     dst[y * dstPitch + x] = samplePlaneCubic(src, srcPitch, srcWidth, srcHeight, srcX, srcY);
 
-    if ((x % 2) == 0 && (y % 2) == 0) {
-        const int localUvX = max(0, min(contentWidth - 1, localX + 1));
-        const int localUvY = max(0, min(contentHeight - 1, localY + 1));
-        unsigned char* dstUv = dst + dstChromaOffset + (y / 2) * dstPitch + x;
-        const float srcUvLumaX = static_cast<float>(cropX) +
-            mapScaledCoordinate(static_cast<float>(localUvX), cropWidth, contentWidth);
-        const float srcUvLumaY = static_cast<float>(cropY) +
-            mapScaledCoordinate(static_cast<float>(localUvY), cropHeight, contentHeight);
-        sampleNv12UvBilinear(
-            src,
-            srcPitch,
+	if ((x % 2) == 0 && (y % 2) == 0) {
+		unsigned char* dstUv = dst + dstChromaOffset + (y / 2) * dstPitch + x;
+		const float srcUvLumaX = static_cast<float>(cropX) +
+			mapScaledCoordinate(static_cast<float>(localX), cropWidth, contentWidth);
+		const float srcUvLumaY = static_cast<float>(cropY) +
+			mapScaledCoordinate(static_cast<float>(localY), cropHeight, contentHeight);
+		sampleNv12UvBilinear(
+			src,
+			srcPitch,
             srcSurfaceHeight,
             srcWidth,
             srcHeight,
