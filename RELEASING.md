@@ -70,7 +70,7 @@ Optional repository variables:
 
 ## Release flow
 
-1. Bump `package.json` to the version you want to ship.
+1. Bump `package.json` to the version you want to ship. For prereleases, the app version must include the prerelease suffix too, for example `1.3.4-beta.1`.
 2. Commit and push that version.
 3. Create a Git tag in the form `vX.Y.Z`.
 4. Create and publish a GitHub release for that tag. Prefer the helper so custom notes are prepended while GitHub still generates the contributor section:
@@ -86,6 +86,8 @@ npm run release:create -- --tag v1.2.0-beta.2 --title "v1.2.0 beta-2" --prerelea
 ```
 
 This uses `gh release create --generate-notes`, which keeps GitHub's generated change summary and contributor list instead of replacing it with a fully manual release body.
+
+Prereleases intentionally skip uploading the auto-update `.yml` metadata assets to the GitHub release, so beta drafts only carry the installer artifacts and checksums.
 
 5. The `Publish Release` workflow builds, signs, notarizes, uploads, and publishes update metadata.
 
